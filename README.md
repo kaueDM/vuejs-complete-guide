@@ -2,14 +2,14 @@
 
 Notas de estudo + Códigos das aplicações desenvolvidas
 
-## | [Projeto 1](#) | [Projeto 2](#) | [Projeto 3](#) |
+## | [Projeto 1](https://goo.gl/V9A5A5) | [Projeto 2](#) | [Projeto 3](#) |
 > Os links serão atualizados no momento de criação dos projetos dentro desde repositório
 
 
 
-*  A notação `{{  }}` chama-se [*string interpolation*](https://en.wikipedia.org/wiki/String_interpolation) 
+*  A notação `{{  }}` chama-se [*string interpolation*](https://en.wikipedia.org/wiki/String_interpolation)
 
-* A instância do Vue JS armazena internamente o código HTML que está conectada a ela, usando este código para 
+* A instância do Vue JS armazena internamente o código HTML que está conectada a ela, usando este código para
 gerar seu template, que será exibido no navegador. O código escrito em HTML durante o desenvolvimento **não é o mesmo**
 renderizado no navegador. São duas coisas distintas, unidas pelo **Vue JS**
 
@@ -79,7 +79,7 @@ Caso tal ação seja necessária, é feito o uso da diretiva **v-html**, que per
 
 //Template
     <p v-html='myLink'></p>
-``` 
+```
 
 * **v-on** - Listener de eventos do DOM
 
@@ -96,7 +96,3 @@ methods: {
 <button v-on:click="add">Add One</button>
 <p>{{ counter }}</p>
 ```
-
-
-
-
