@@ -96,3 +96,21 @@ methods: {
 <button v-on:click="add">Add One</button>
 <p>{{ counter }}</p>
 ```
+
+* Acessando uma instância VueJS externamente: É possível acessar propriedades e métodos de uma diferente instância
+VueJS, tanto dentro de outra instância quanto em *plain Javascript*, desde que a instância seja declarada com um nome.
+No exemplo abaixo a instância é armazenada na `var vm1`.
+
+```
+var vm1 = new Vue({
+    ...
+    data: {
+      name: 'Foo'
+    }
+    ...
+  });
+
+setTimeout(function(){
+  vm1.name = 'Bar';
+  }, 5000);
+```
