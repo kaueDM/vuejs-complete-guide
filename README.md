@@ -114,3 +114,27 @@ setTimeout(function(){
   vm1.name = 'Bar';
   }, 5000);
 ```
+
+## Components
+
+* Ao registrar um novo componente, a propriedade `data` deve ser uma **função** que retorne um novo objeto.
+Este novo objeto será o grupo de valores de `data` especificamente.
+
+```
+<div id="app">
+  <component-name />
+</div>
+
+Vue.component('component-name', {
+  data: function() {
+    return {
+      name: 'Foo',
+      age: '20'
+    }
+  };
+});
+
+new Vue({
+    el: '#app'
+});
+```
