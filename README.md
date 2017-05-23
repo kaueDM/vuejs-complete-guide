@@ -138,3 +138,102 @@ new Vue({
     el: '#app'
 });
 ```
+
+* O envio de props para componentes filhos é semelhante ao React e React Native. Primeiro, é necessário
+fazer o *bind* de que propriedade do objeto **data** deve ser enviado, e então declarar uma propriedade **com o mesmo nome** em um array chamado **props** no componente filho.
+
+```
+//Componente Pai
+  data: () => {
+    return {
+      name: 'Foo'
+    };
+  }
+
+//Template do componente pai, que faz uso de um componente filho chamado `child-component`
+//O v-bind (shorthand [:]) conecta a propriedade com o fragmento do objeto `data`
+<div>
+  <child-component :name="name"/>
+</div>
+
+//Componente filho
+export default {
+  props: ['name']
+}
+
+//Template do componente filho, que exibe o valor recebido na prop `name`
+//O valor será `Foo`
+<div>
+<p>Hello, my name is {{ name }}</p>
+</div>  
+```
+
+* Para validar um ou mais tipos de props, ao invés de fazer o uso de um array, usa-se um objeto.
+Caso seja necessário especificar mais de um tipo, esses tipos são passados em um array.
+
+```
+export default {
+  props: {
+    name: String,
+    age: [String, Integer]
+  }
+}
+```
+
+* Ainda é possível refinar ainda mais esta estrutura, definindo se a propriedade é obrigatória ou se
+existe um valor *default*
+
+```
+export default {
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    age: {
+      type: Integer,
+      default: 20
+    }
+  }
+}
+```
+
+* Para enviar valores de um componente filho para um componente pai, é necessário usar **$emit()**.
+O método **$emit()** pertence ao VueJS e é responsável por propagar eventos. Seus parâmetros são:
+**$emit(nomeDoEvento, dados)**. O nome do evento é definido pelo desenvolvedor.
+
+Já no componente pai deve ser adicionado um *listener* para aquele evento, assim como o que deve ser executado
+ao receber o mesmo.
+
+```
+//Componente filho chamado `child-component`
+<button @click="changeName"></button>
+
+export default {
+  props: {
+    name: String
+  },
+  methods: {
+    changeName() {
+      this.name = 'Bar'
+      this.$emit('nameWasReset', this.name)
+    }
+  }
+}
+
+//Componente pai
+export default {
+  data: () => {
+    return {
+      name: 'Foo'
+    };
+  }
+}
+
+//$event é o valor enviado pelo evento no momento da sua emissão (this.name do componente child-component)
+<child-component  :name="name" @nameWasReset="name = $event" />
+<p>Name in memory: {{ name }}</p>
+
+//O valor inicial do parágrafo acima é 'Foo'. Ao clicar no botão que dispara o evento 'changeName()'
+//no componente filho, este valor é alterado para 'Bar'
+```

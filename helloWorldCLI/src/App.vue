@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import ServerList from './components/ServerList.vue';
-import ServerLogs from './components/ServerLogs.vue';
+import ServerList from './components/Server/ServerList.vue';
+import ServerLogs from './components/Server/ServerLogs.vue';
 export default {
   components: {
     'app-server-list': ServerList,
